@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>GERAR VENDA</title>
+    </h:head>
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <script type="text/javascript">
+                function handleDrop(event, ui) {
+                    var droppedCar = ui.draggable;
+                    droppedCar.fadeOut('fast');
+                }
+            </script>
+
+            <h:form id="carForm">
+                <p:outputLabel value="Cliente:"/><br/>
+                <p:selectOneMenu id="player" value="#{bean_venda.venda.cliente_id}">  
+                    <f:selectItems value="#{bean_venda.cls}"
+                                   var="cliente"
+                                   itemLabel="#{cliente.nome}"
+                                   itemValue="#{cliente.id_cliente}"/> 
+                </p:selectOneMenu>
+                <br/>
+                <p:button outcome="Principal.jsf" value="Voltar"></p:button><br/><br/>
+                <p:fieldset id="availableCarsField" legend="Produtos">
+                    <p:dataTable id="availableCars" var="produto" value="#{bean_venda.produtos}">
+                        <p:column style="width:20px">
+                            <h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+                            <p:draggable for="dragIcon" revert="true" helper="clone"/>
+                        </p:column>
+
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{produto.produto_id}" />
+                        </p:column>
+
+                        <p:column headerText="Nome">
+                            <h:outputText value="#{produto.nome}" />
+                        </p:column>
+
+                        <p:column headerText="Descrição do produto">
+                            <h:outputText value="#{produto.descricao}" />
+                        </p:column>
+
+                        <p:column headerText="Modelo produto">
+                            <h:outputText value="#{produto.modelo}" />
+                        </p:column>
+
+                        <p:column headerText="Valor">
+                            <h:outputText value="#{produto.valor}" />
+                        </p:column>
+                        <p:column headerText="Quantidade">
+                            <h:outputText value="#{produto.quantidade}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:fieldset>
+                <p:fieldset id="selectedProduto" legend="SELEÇÃO DE PRODUTOS" style="margin-top:20px">
+                    <p:outputPanel id="dropArea">
+                        <h:outputText value="!!!ARRASTE PARA CÁ OS PRODUTOS!!!" rendered="#{empty bean_venda.droppedProdutos}" style="font-size:24px;" />
+                        <p:dataTable id="selectedCarsTable" var="venda" value="#{bean_venda.droppedProdutos}" rendered="#{not empty bean_venda.droppedProdutos}">
+                            <p:column headerText="Id">
+                                <h:outputText value="#{venda.produto_id}" />
+                            </p:column>
+
+                            <p:column headerText="Data_venda">
+                                <h:outputText value="#{venda.data_venda}" />
+                            </p:column>
+
+                            <p:column headerText="Valor">
+                                <h:outputText value="#{venda.valor_unitario}" />
+                            </p:column>
+
+                            <p:column headerText="Quantidade">
+                                <p:panel>
+                                    <p:inputText value="#{venda.qtd_unitario}" required="true"/>
+                                </p:panel>
+                            </p:column>                      
+                        </p:dataTable>
+                    </p:outputPanel>
+                </p:fieldset>
+                <p:droppable for="selectedProduto" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="availableCars" onDrop="handleDrop">
+                    <p:ajax listener="#{bean_venda.onProdutoDrop}" update="dropArea availableCars" />
+                </p:droppable>
+                <p:commandButton action="#{bean_venda.salvarVenda()}"
+                                 update="carForm" value="Salvar">
+                    <f:ajax render="@form" resetValues="true"/>
+                </p:commandButton>
+            </h:form>
+            <h:commandLink value="RELATORIO GERAL VENDAS" action="#{bean.relatorioCliente('relatorio_venda')}" immediate="true"></h:commandLink>
+        </ui:define>
+    </ui:composition>
+</html>
+

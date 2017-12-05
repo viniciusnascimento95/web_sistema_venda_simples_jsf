@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Cliente cadastrar</title>
+    </h:head>
+
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <h:form>
+                <p:panel>
+                    <h3>Cadastrar Cliente</h3>
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:outputLabel value="Nome:"/>
+                    <p:inputText value="#{bean.cl.nome}" required="true"
+                                 requiredMessage="Campo nome obrigatorio"/>
+                    <p:outputLabel value="E-mail:"/>
+                    <p:inputText value="#{bean.cl.email}" placeholder="@email.com" required="true"/> 
+                    <p:outputLabel value="Telefone:"/>
+                    <p:inputMask value="#{bean.cl.telefone}" mask="(99)99999-9999" required="true"/><br/>
+                    <br/>
+                    <p:commandButton action="#{bean.salvarCliente()}"
+                                     update="growl" value="Salvar">
+                        <f:ajax render="@form" resetValues="true"/>
+                    </p:commandButton>
+                    <p:button outcome="index.jsf" value="Voltar"></p:button>                    
+                </p:panel>                    
+            </h:form>
+            <h:commandLink value="RELATORIO GERAL CLIENTE" action="#{bean.relatorioCliente('relatorio_cliente')}" immediate="true"></h:commandLink>
+        </ui:define>
+    </ui:composition>
+</html>

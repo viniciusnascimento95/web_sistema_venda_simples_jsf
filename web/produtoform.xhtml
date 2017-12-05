@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <f:facet name="first">
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+            <title>Cadastro de Produto</title>
+        </f:facet>
+    </h:head>
+
+    <ui:composition template="index.xhtml">
+
+        <ui:define name="conteudo">
+
+            <h:form id="formProd">
+                <p:panel>
+                    <h2>Cadastrar produto</h2>
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:outputLabel value="Fornecedor:"/><br/>
+                    <p:selectOneMenu id="player" value="#{bean.pr.fornecedor_id}">  
+                        <f:selectItems value="#{bean.fornecedores}"
+                                       var="fornecedor"
+                                       itemLabel="#{fornecedor.strNome}"
+                                       itemValue="#{fornecedor.iid}"/> 
+                    </p:selectOneMenu>
+                    <br/>
+                    <h:panelGrid columns="4">
+                        <p:outputLabel value="NOME:" />
+                        <p:inputText value="#{bean.pr.nome}" rendered="true" />                   
+                        <p:outputLabel value="DESCRIÇÃO:"/>
+                        <p:inputText value="#{bean.pr.descricao}" required="true"/>
+                        <p:outputLabel value="MODELO:"/>
+                        <p:inputText value="#{bean.pr.modelo}" required="true"/>
+                        <p:outputLabel value="VALOR:"/>
+                        <p:inputText value="#{bean.pr.valor}" required="true"/>
+                        <p:outputLabel value="QUANTIDADE:"/>
+                        <p:inputText value="#{bean.pr.quantidade}" required="true"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="3">
+                        <p:commandButton action="#{bean.salvarProduto()}"
+                                         update="growl" value="Salvar">
+                            <f:ajax render="@form" resetValues="true"/>
+                        </p:commandButton>
+                        <p:button outcome="list_produtos.xhtml" value="Lista de produtos"></p:button>
+                        <p:button outcome="index.jsf" value="Voltar"></p:button>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+            <h:commandLink value="RELATORIO GERAL PRODUTOS" action="#{bean.relatorioCliente('relatorio_produtos')}" immediate="true"></h:commandLink> <br/>
+            <h:commandLink value="RELATORIO GERAL ESTOQUE" action="#{bean.relatorioCliente('relatorio_estoque_produtos')}" immediate="true"></h:commandLink>
+        </ui:define>
+    </ui:composition>       
+</html>
+

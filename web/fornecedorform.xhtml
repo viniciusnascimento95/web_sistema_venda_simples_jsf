@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Cadastro de Fornecedor</title>
+    </h:head>
+
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <h:form>
+                <p:panel>
+                    <h2>Formulario de fornecedor</h2>
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <p:panelGrid columns="4">
+                        <p:outputLabel value="Nome:"/>
+                        <p:inputText value="#{bean.fr.strNome}" required="true"
+                                     requiredMessage="Campo nome obrigatorio"/>
+                        <p:outputLabel value="CNPJ:"/>
+                        <p:inputMask value="#{bean.fr.strCnpj}" mask="99.999.999/9999-99" required="true"/>
+                        <p:outputLabel value="Endereco:"/>
+                        <p:inputText value="#{bean.fr.strEndereco}" required="true"/>
+                        <p:outputLabel value="E-mail:"/>
+                        <p:inputText value="#{bean.fr.strEmail}" required="true"/>
+                        <p:outputLabel value="Telefone:"/>
+                        <p:inputMask value="#{bean.fr.strTelefone}" mask="(99)99999-9999" required="true"/>     
+                        <p:commandButton action="#{bean.salvarFornecedor()}"
+                                         update="growl" value="Salvar">
+                            <f:ajax render="@form" resetValues="true"/>
+                        </p:commandButton>
+                        <p:button outcome="index.jsf" value="Voltar"></p:button>
+                        <p:button outcome="lista_fornecedor.jsf" value="Lista de fornecedores"></p:button>
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+            <h:commandLink value="RELATORIO GERAL FONECEDOR" action="#{bean.relatorioCliente('relatorio_fornecedor')}" immediate="true"></h:commandLink>
+        </ui:define>
+    </ui:composition>
+</html>
+

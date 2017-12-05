@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Sistema de venda</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <h1>Bem vindo ao sistema de venda TecWeb.</h1>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    <h3>Sistema desenvolvido por Denise Jeane, Sara Grecia e Vinicius Nascimento.</h3>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="250" header="Sistema" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Opções paginas">
+                            <p:menuitem outcome="clienteform.xhtml" value="Cadastrar Cliente" />
+                            <p:menuitem outcome="produtoform.xhtml" value="Cadastrar Produto" />
+                            <p:menuitem outcome="fornecedorform.xhtml" value="Cadastrar Fornecedor" />
+                            <p:menuitem outcome="vendaform.xhtml" value="Gerar venda" />
+                            <p:menuitem outcome="relatoriosview" value="Todos os relatorios"/>
+                            <p:menuitem value="Faculdade Porto" url="http://materiais.portovelho.br/vestibular2018-faculdadeporto" />                          
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">  
+                    
+                    <h:form>
+                    <ui:insert name="conteudo" />                            
+                    </h:form>
+                    
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

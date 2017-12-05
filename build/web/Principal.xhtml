@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <h1>Bem vindo ao sistema de venda</h1>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Opções paginas">
+                            <p:menuitem outcome="clienteform.xhtml" value="Cadastrar Cliente" />
+                            <p:menuitem outcome="cadproduto.xhtml"  value="Cadastrar Produtos"/>
+                            <p:menuitem outcome="cadfornecedor.xhtml" value="Cadastrar Fornecedor" />
+                            <p:menuitem outcome="RegVenda.xhtml" value="Registrar Venda" />
+                            <p:menuitem value="Faculdade Porto" url="http://materiais.portovelho.br/vestibular2018-faculdadeporto" />
+                            <p:menuitem outcome="index.jsf" value="Relatorios"/>
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    Bem vindo ao sistema de vendas 
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

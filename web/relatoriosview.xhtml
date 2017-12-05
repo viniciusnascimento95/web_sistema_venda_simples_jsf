@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head>
+        <title>RELATORIOS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <ui:composition template="index.xhtml">
+        <ui:define name="conteudo">
+            <h2> RELATORIOS </h2>
+            <h:commandLink value="RELATORIO GERAL CLIENTE" action="#{bean.relatorioCliente('relatorio_cliente')}" immediate="true"></h:commandLink><br/>
+            <h:commandLink value="RELATORIO GERAL FORNECEDOR" action="#{bean.relatorioCliente('relatorio_fornecedor')}" immediate="true"></h:commandLink><br/>
+            <h:commandLink value="RELATORIO GERAL PRODUTOS" action="#{bean.relatorioCliente('relatorio_produtos')}" immediate="true"></h:commandLink><br/>
+            <h:commandLink value="RELATORIO GERAL ESTOQUE" action="#{bean.relatorioCliente('relatorio_estoque_produtos')}" immediate="true"></h:commandLink><br/>
+            <h:commandLink value="RELATORIO GERAL VENDAS" action="#{bean.relatorioCliente('relatorio_venda')}" immediate="true"></h:commandLink><br/>
+            <h:commandLink value="RELATORIO DETALHE VENDAS" action="#{bean.relatorioCliente('relatorio_detalhe_venda')}" immediate="true"></h:commandLink><br/>
+        </ui:define>
+    </ui:composition>
+</html>
